@@ -1,8 +1,13 @@
-#!/bin/bash
+#!/bin/sh
 
-export BR2_EXTERNAL="$PWD/rf3-pi-util-br2ext"
+set -e
 
-cd buildroot
+make -C buildroot \
+    O=/work/output \
+    BR2_EXTERNAL=../rf3-pi-util-br2ext \
+    rf3_pi4_utility_defconfig
 
-make rf3_pi4_utility_defconfig
-make -j$(nproc)
+make -C buildroot \
+    O=/work/output \
+    BR2_EXTERNAL=../rf3-pi-util-br2ext \
+    -j"$(nproc)"

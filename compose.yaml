@@ -1,0 +1,19 @@
+services:
+  buildroot:
+    build:
+      context: .
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: buildroot-builder:local
+    working_dir: /work
+    volumes:
+      - .:/work
+      - ./.cache/buildroot-dl:/home/builder/dl
+      - ./.cache/buildroot-ccache:/home/builder/.buildroot-ccache
+    environment:
+      BR2_DL_DIR: /home/builder/dl
+      BR2_CCACHE_DIR: /home/builder/.buildroot-ccache
+    command: ["./build.sh"]
+    stdin_open: true
+    tty: true
