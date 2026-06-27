@@ -27,7 +27,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
-        submodules: true
+        with:
+          submodules: true
 
       - name: Get docker image cache
         uses: actions/cache@v5
