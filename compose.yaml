@@ -17,3 +17,4 @@ services:
     command: ["make"]
     stdin_open: true
     tty: true
+    user: "${UID-1000}:${GID-1000}"
