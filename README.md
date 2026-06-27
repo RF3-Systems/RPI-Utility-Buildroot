@@ -11,6 +11,16 @@ Whatever is needed next.
 
 # Build
 
+> [!IMPORTANT]
+> Make sure you checkout with git submodules
+> ```sh
+> git clone --recurse-submodules https://github.com/RF3-Systems/RPI-Utility-Buildroot.git
+> ```
+> Or if already cloned, run this in the repo directory:
+> ```sh
+> git submodule update --init
+> ```
+
 Run from the project directory:
 
 ```sh
