@@ -42,6 +42,6 @@ This is meant to be both serve the real purpose of building its image, but also 
 
 The design of this comes from these parts of the buildroot manual:
 
-What is going on with the toplevel [`Makefile`](https://buildroot.org/downloads/manual/manual.html#_custom_top_makefile)?
-What is the [`board`](https://buildroot.org/downloads/manual/manual.html#_implementing_layered_customizations) dir?
-What goes in the [`external tree`](https://buildroot.org/downloads/manual/manual.html#_example_layout)
+- What is going on with the toplevel [`Makefile`](https://buildroot.org/downloads/manual/manual.html#_custom_top_makefile)?
+- What is the [`board`](https://buildroot.org/downloads/manual/manual.html#_implementing_layered_customizations) dir?
+- What goes in the [`external tree`](https://buildroot.org/downloads/manual/manual.html#_example_layout)
