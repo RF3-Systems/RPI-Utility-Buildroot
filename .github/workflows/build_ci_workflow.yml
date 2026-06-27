@@ -43,14 +43,14 @@ jobs:
 
       - name: Load or pull images
         run: |
-          if [ -f /tmp/docker-cache/br-image.tar ]; then
+          if [ -f /tmp/docker-cache/buildroot.tar ]; then
             echo "Loading Image"
-            docker load -i /tmp/docker-cache/br-image.tar
+            docker load -i /tmp/docker-cache/buildroot.tar
           else
             echo "Pulling Image"
-            docker compose build br-image
+            docker compose build buildroot
             mkdir -p /tmp/docker-cache
-            docker save $(docker compose config | grep image: | awk '{print $2}') -o /tmp/docker-cache/br-image.tar
+            docker save $(docker compose config | grep image: | awk '{print $2}') -o /tmp/docker-cache/buildroot.tar
           fi
 
       - name: Export UID/GID for Compose
