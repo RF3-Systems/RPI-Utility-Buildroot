@@ -62,6 +62,7 @@ jobs:
 
       - name: Build the project
         run: |
+          ls -alh
           make docker
 
       - name: 'Upload Artifact'
