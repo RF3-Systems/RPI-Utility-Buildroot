@@ -32,7 +32,7 @@ jobs:
         uses: actions/cache@v5
         with:
           path: /tmp/docker-cache
-          key: docker-images-${{ hashFiles('compose.yml') }}
+          key: docker-images-${{ hashFiles('compose.yaml') }}
 
       - name: Clear docker cache (if requested)
         if: github.event.inputs.clear-cache == 'true'
@@ -60,7 +60,7 @@ jobs:
 
       - name: Build the project
         run: |
-          docker compose -f compose.yml run --rm make
+          docker compose -f compose.yaml run --rm make
 
       - name: 'Upload Artifact'
         if: ${{ inputs.upload-build-artifact }}
