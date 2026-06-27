@@ -60,7 +60,7 @@ jobs:
 
       - name: Build the project
         run: |
-          docker compose -f compose.yaml run --rm make
+          docker compose -f compose.yaml run --rm buildroot
 
       - name: 'Upload Artifact'
         if: ${{ inputs.upload-build-artifact }}
