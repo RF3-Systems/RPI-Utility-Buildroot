@@ -17,8 +17,7 @@ all: defconfig build
 
 dirs:
 	mkdir -vp $(HOST_CACHE_DIR)
-	mkdir -vp $(HOST_DL_DIR)
- mmdir -vp $(OUTPUT)
+	mkdir -vp $(HOST_DL_DIR) $(OUTPUT)
 
 docker: dirs
 	docker compose run --rm buildroot
