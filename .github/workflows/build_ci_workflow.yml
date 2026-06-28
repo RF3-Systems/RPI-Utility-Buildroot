@@ -61,8 +61,11 @@ jobs:
           echo "GID=$(id -g)" >> "$GITHUB_ENV"
 
       - name: Build the project
+        env:
+          HOST_CACHE_DIR: /tmp/docker-cache/.br-cache
+          HOST_DL_DIR: /tmp/docker-cache/.br-dl
         run: |
-          HOST_CACHE_DIR=/tmp/docker-cache/.br-cache HOST_DL_DIR=/tmp/docker-cache/.br-dl make docker
+          make docker
 
       - name: 'Upload Artifact'
         if: ${{ inputs.upload-build-artifact }}
