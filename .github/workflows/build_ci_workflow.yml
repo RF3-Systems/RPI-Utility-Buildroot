@@ -36,6 +36,22 @@ jobs:
           path: /tmp/docker-cache
           key: docker-images-${{ hashFiles('compose.yaml') }}
 
+      - name: Cache Buildroot downloads
+        uses: actions/cache@v5
+        with:
+          path: /tmp/buildroot-dl
+          key: buildroot-dl-${{ hashFiles('**/*.mk', '**/*.hash', '**/Config.in', '**/*defconfig') }}
+          restore-keys: |
+            buildroot-dl-
+
+      - name: Cache Buildroot ccache
+        uses: actions/cache@v5
+        with:
+          path: /tmp/buildroot-ccache
+          key: buildroot-ccache-${{ github.ref_name }}
+          restore-keys: |
+            buildroot-ccache-
+
       - name: Clear docker cache (if requested)
         if: github.event.inputs.clear-cache == 'true'
         run: |
@@ -62,8 +78,8 @@ jobs:
 
       - name: Build the project
         env:
-          HOST_CACHE_DIR: /tmp/docker-cache/.br-cache
-          HOST_DL_DIR: /tmp/docker-cache/.br-dl
+          HOST_CACHE_DIR: /tmp/buildroot-ccache
+          HOST_DL_DIR: /tmp/buildroot-dl
         run: |
           ls -alh /tmp/docker-cache
           make docker
