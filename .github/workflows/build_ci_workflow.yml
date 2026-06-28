@@ -81,7 +81,6 @@ jobs:
           HOST_CACHE_DIR: /tmp/buildroot-ccache
           HOST_DL_DIR: /tmp/buildroot-dl
         run: |
-          ls -alh "$HOST_CACHE_DIR" "$HOST_DL_DIR"
           make docker
 
       - name: 'Upload Artifact'
