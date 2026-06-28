@@ -65,6 +65,7 @@ jobs:
           HOST_CACHE_DIR: /tmp/docker-cache/.br-cache
           HOST_DL_DIR: /tmp/docker-cache/.br-dl
         run: |
+          ls -alh /tmp/docker-cache
           make docker
 
       - name: 'Upload Artifact'
