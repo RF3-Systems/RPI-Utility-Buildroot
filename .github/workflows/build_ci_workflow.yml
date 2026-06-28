@@ -62,7 +62,7 @@ jobs:
 
       - name: Build the project
         run: |
-          make docker
+          HOST_CACHE_DIR=/tmp/docker-cache/.br-cache HOST_DL_DIR=/tmp/docker-cache/.br-dl make docker
 
       - name: 'Upload Artifact'
         if: ${{ inputs.upload-build-artifact }}
