@@ -6,8 +6,8 @@ DEFCONFIG := rf3_pi4_utility_defconfig
 
 # These will never be visible to the docker container, it's just to make the mount directories permissions correct,
 # As they are made by you  :)
-HOST_CACHE_DIR := $(THIS_EXTERNAL_PATH)/.cache/buildroot-ccache
-HOST_DL_DIR := $(THIS_EXTERNAL_PATH)/.cache/buildroot-dl
+HOST_CACHE_DIR ?= $(THIS_EXTERNAL_PATH)/.cache/buildroot-ccache
+HOST_DL_DIR ?= $(THIS_EXTERNAL_PATH)/.cache/buildroot-dl
 
 JOBS := $(shell nproc)
 
