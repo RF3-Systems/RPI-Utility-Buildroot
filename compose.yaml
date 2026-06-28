@@ -9,8 +9,8 @@ services:
     working_dir: /work
     volumes:
       - .:/work
-      - ./.cache/buildroot-dl:/home/builder/dl
-      - ./.cache/buildroot-ccache:/home/builder/.buildroot-ccache
+      - ${HOST_DL_DIR:-./.cache/buildroot-dl}:/home/builder/dl
+      - ${HOST_CACHE_DIR:-./.cache/buildroot-ccache}:/home/builder/.buildroot-ccache
     environment:
       BR2_DL_DIR: /home/builder/dl
       BR2_CCACHE_DIR: /home/builder/.buildroot-ccache
