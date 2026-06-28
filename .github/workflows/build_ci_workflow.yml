@@ -62,10 +62,6 @@ jobs:
 
       - name: Build the project
         run: |
-          ls -alh
-          make dirs
-          ls -alh
-          docker compose run --rm buildroot ls -alh
           make docker
 
       - name: 'Upload Artifact'
