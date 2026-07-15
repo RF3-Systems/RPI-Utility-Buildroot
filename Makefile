@@ -27,7 +27,8 @@ docker: dirs
 MAKE_BUILDROOT = $(MAKE) -C $(BUILDROOT) O=$(OUTPUT) BR2_EXTERNAL=$(BR2_EXTERNAL) -j$(JOBS)
 
 defconfig:
-	@echo $UID $GID
+	@echo "UID=$$(id -u)"
+	@echo "GID=$$(id -g)"
 	@ls -alh $(HOST_CACHE_DIR) $(HOST_DL_DIR) $(OUTPUT)
 	$(MAKE_BUILDROOT) $(DEFCONFIG)
 
