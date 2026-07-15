@@ -4,6 +4,9 @@ OUTPUT := $(THIS_EXTERNAL_PATH)/output
 BR2_EXTERNAL := $(THIS_EXTERNAL_PATH)/rf3-pi-util-br2ext
 DEFCONFIG := rf3_pi4_utility_defconfig
 
+HOST_UID := $(shell id -u)
+HOST_GID := $(shell id -g)
+
 # These will never be visible to the docker container, it's just to make the mount directories permissions correct,
 # As they are made by you  :)
 HOST_CACHE_DIR := $(THIS_EXTERNAL_PATH)/.cache/buildroot-ccache
@@ -21,7 +24,7 @@ dirs:
 	mkdir -vp $(OUTPUT)
 
 docker: dirs
-	UID=$$(id -u) GID=$$(id -g) docker compose run --rm buildroot
+	docker compose run --user "$(HOST_UID):$(HOST_GID)" --rm buildroot
 
 MAKE_BUILDROOT = $(MAKE) -C $(BUILDROOT) O=$(OUTPUT) BR2_EXTERNAL=$(BR2_EXTERNAL) -j$(JOBS)
 
