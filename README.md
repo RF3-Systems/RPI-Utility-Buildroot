@@ -27,15 +27,18 @@ Run `make` from the project directory:
 make
 ```
 
-Or if you want docker
+Or if you want to use docker:
 
 ```sh
 make docker
 ```
 
+The CI of this project uses the docker container to build the image.
+
+
 # Motivation
 
-This is meant to be both serve the real purpose of building its image, but also as an educational/example project. Feel free to fork and modify. I use this for remote setups and will be adding tools I need as I use the image. This is very handy for me, as I can orchestrate multiple networks (WiFi, LAN, + Bluetooth) without using my host machine interfaces. 
+This is meant to be both serve the real purpose of building a utility image, but also as an educational/example project. Feel free to fork and modify. I use this for remote setups and will be adding tools I need as I use the image. This is very handy for me, as I can orchestrate multiple networks (WiFi, LAN, + Bluetooth) without using my host machine interfaces. 
 
 # Quick Notes
 
