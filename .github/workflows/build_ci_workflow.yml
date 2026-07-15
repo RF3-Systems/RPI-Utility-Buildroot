@@ -36,13 +36,26 @@ jobs:
           path: /tmp/docker-cache
           key: docker-images-${{ hashFiles('compose.yaml') }}
 
+      - name: Cache Buildroot downloads
+        uses: actions/cache@v5
+        with:
+          path: /tmp/buildroot-dl
+          key: buildroot-dl-v1
+          restore-keys: |
+            buildroot-dl-
+      - name: Cache Buildroot ccache
+        uses: actions/cache@v5
+        with:
+          path: /tmp/buildroot-ccache
+          key: buildroot-ccache-${{ github.ref_name }}
+          restore-keys: |
+            buildroot-ccache-
       - name: Clear docker cache (if requested)
         if: github.event.inputs.clear-cache == 'true'
         run: |
           echo "Clearing Docker cache..."
           rm -rf /tmp/docker-cache
           echo "Docker cache cleared"
-
       - name: Load or pull images
         run: |
           if [ -f /tmp/docker-cache/buildroot.tar ]; then
@@ -54,16 +67,16 @@ jobs:
             mkdir -p /tmp/docker-cache
             docker save $(docker compose config | grep image: | awk '{print $2}') -o /tmp/docker-cache/buildroot.tar
           fi
-
       - name: Export UID/GID for Compose
         run: |
           echo "UID=$(id -u)" >> "$GITHUB_ENV"
           echo "GID=$(id -g)" >> "$GITHUB_ENV"
-
       - name: Build the project
+        env:
+          HOST_CACHE_DIR: /tmp/buildroot-ccache
+          HOST_DL_DIR: /tmp/buildroot-dl
         run: |
           make docker
-
       - name: 'Upload Artifact'
         if: ${{ inputs.upload-build-artifact }}
         uses: actions/upload-artifact@v6
