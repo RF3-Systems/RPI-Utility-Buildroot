@@ -21,7 +21,7 @@ dirs:
 	mkdir -vp $(OUTPUT)
 
 docker: dirs
-	UID="$(id -u)" GID="$(id -g)" docker compose run --rm buildroot
+	UID=$$(id -u) GID=$$(id -g) docker compose run --rm buildroot
 
 MAKE_BUILDROOT = $(MAKE) -C $(BUILDROOT) O=$(OUTPUT) BR2_EXTERNAL=$(BR2_EXTERNAL) -j$(JOBS)
 
