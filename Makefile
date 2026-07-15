@@ -19,6 +19,7 @@ dirs:
 	mkdir -vp $(HOST_CACHE_DIR)
 	mkdir -vp $(HOST_DL_DIR)
 	mkdir -vp $(OUTPUT)
+	ls -alh $(HOST_CACHE_DIR) $(HOST_DL_DIR) $(OUTPUT)
 
 docker: dirs
 	docker compose run --rm buildroot
