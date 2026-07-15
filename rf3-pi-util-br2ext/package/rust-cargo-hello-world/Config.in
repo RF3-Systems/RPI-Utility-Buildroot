@@ -1,0 +1,6 @@
+config BR2_PACKAGE_RUST_CARGO_HELLO_WORLD
+	bool "rust_hello_world"
+	depends on BR2_PACKAGE_HOST_RUSTC_TARGET_ARCH_SUPPORTS
+	select BR2_PACKAGE_HOST_RUSTC
+	help
+	  This is a skeleton for cargo projects.

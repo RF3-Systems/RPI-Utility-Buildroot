@@ -1,6 +1,10 @@
 #!/bin/sh
 set -e
 
-"${HOST_DIR}/bin/bmaptool" create \
-  -o "${BINARIES_DIR}/sdcard.img.bmap" \
-  "${BINARIES_DIR}/sdcard.img"
+BMAP="$HOST_DIR/bin/bmaptool"
+SD_IMG="$BINARIES_DIR/sdcard.img"
+ZSTD="$HOST_DIR/bin/zstd"
+
+"$BMAP" create --output "$SD_IMG.bmap" "$SD_IMG"
+
+"$ZSTD" --keep --force -10 "$SD_IMG"

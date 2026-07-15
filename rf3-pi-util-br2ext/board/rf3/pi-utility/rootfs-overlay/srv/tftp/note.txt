@@ -1,0 +1,2 @@
+This is nothing but a file to live in /srv/tftp.
+So something will always be here, when you look.

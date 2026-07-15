@@ -1,0 +1,12 @@
+PermitRootLogin yes
+AuthorizedKeysFile	.ssh/authorized_keys
+Subsystem	sftp	/srv/tftp
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	PermitTTY no
+#	ForceCommand cvs server
+#
+

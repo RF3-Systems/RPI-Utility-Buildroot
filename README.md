@@ -4,12 +4,10 @@ This is a self-contained buildroot project for utility / lab tools on Raspbery P
 
 Tools include
 - [`hostap`](https://hostap.epitest.fi/)/[`dnsmasq`](https://wiki.archlinux.org/title/Dnsmasq) - Operate LAN/Wifi in different modes (access point, or client).
-- [`usbip`](https://wiki.archlinux.org/title/USB/IP) - Forward a usb port over the network, useful for serial cables and [`UMS`](https://docs.u-boot.org/en/stable/usage/cmd/ums.html) mode
-- [`dropbear`](https://matt.ucc.asn.au/dropbear/dropbear.html) - ssh server 
-
-...
-
-- Whatever is needed next.
+- [`usbip`](https://wiki.archlinux.org/title/USB/IP) - Forward a usb port over the network, useful for serial cables and [`UMS`](https://docs.u-boot.org/en/stable/usage/cmd/ums.html) mode.
+- [`openssh`](https://www.openssh.org/) - ssh/sftp server.
+- [`ser2net`](https://github.com/cminyard/ser2net) - Forward serial connections over network sockets.
+- [`jq`](https://jqlang.org/) - JSON processor designed for command-line.
 
 # Build
 
@@ -23,10 +21,10 @@ Tools include
 > git submodule update --init
 > ```
 
-Run from the project directory:
+Run `make` from the project directory:
 
 ```sh
-./build.sh
+make
 ```
 
 Or if you want docker

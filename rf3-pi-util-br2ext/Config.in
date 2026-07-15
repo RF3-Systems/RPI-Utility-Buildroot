@@ -1,1 +1,6 @@
 # RF3 Pi utility external configuration
+menu "RF3 packages"
+
+source "$BR2_EXTERNAL_RF3_PI_UTIL_PATH/package/rust-cargo-hello-world/Config.in"
+
+endmenu

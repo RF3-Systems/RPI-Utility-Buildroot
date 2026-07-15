@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Bridge the built in WiFi/LAN interfaces and provide dhcp on subnet 
+# 192.168.88.1/24 with 12H leases in range 192.168.88.[50-150]
+
+case "$1" in
+    start)
+        echo "Starting Wi-Fi AP + Ethernet LAN..."
+
+        killall wpa_supplicant 2>/dev/null || true
+        killall hostapd 2>/dev/null || true
+        killall dnsmasq 2>/dev/null || true
+
+        ip link set wlan0 down
+        ip link set eth0 down
+
+        ip addr flush dev wlan0
+        ip addr flush dev eth0
+
+        # Recreate bridge.
+        ip link del br0 2>/dev/null || true
+        ip link add br0 type bridge
+
+        ip link set wlan0 master br0
+        ip link set eth0 master br0
+
+        ip addr add 192.168.88.1/24 dev br0
+
+        ip link set br0 up
+        ip link set eth0 up
+        ip link set wlan0 up
+
+        hostapd /etc/hostapd.conf -B
+
+        dnsmasq \
+          --interface=br0 \
+          --bind-interfaces \
+          --dhcp-range=192.168.88.50,192.168.88.150,255.255.255.0,12h \
+          --dhcp-option=3,192.168.88.1 \
+          --dhcp-option=6,192.168.88.1
+    ;;
+
+    stop)
+        killall dnsmasq 2>/dev/null || true
+        killall hostapd 2>/dev/null || true
+
+        ip link set wlan0 nomaster 2>/dev/null || true
+        ip link set eth0 nomaster 2>/dev/null || true
+        ip link set br0 down 2>/dev/null || true
+        ip link del br0 2>/dev/null || true
+
+        ip addr flush dev wlan0
+        ip addr flush dev eth0
+    ;;
+
+    restart)
+        "$0" stop
+        "$0" start
+    ;;
+
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+    ;;
+    esac

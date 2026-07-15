@@ -1,0 +1,16 @@
+connection: &uart0
+  accepter: telnet,0.0.0.0,2000
+  connector: serialdev,/dev/ttyUSB0,115200N81
+
+connection: &uart1
+  accepter: telnet,0.0.0.0,2001
+  connector: serialdev,/dev/ttyUSB1,115200N81
+
+connection: &uart2
+  accepter: telnet,0.0.0.0,2002
+  connector: serialdev,/dev/ttyUSB2,115200N81
+
+connection: &uart3
+  accepter: telnet,0.0.0.0,2003
+  connector: serialdev,/dev/ttyUSB3,115200N81
+
